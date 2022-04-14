@@ -23,6 +23,11 @@ func Wrap[T any](value *T) Option[T] {
 	return Option[T]{value: value}
 }
 
+// Some wraps a nonnull value.
+func Some[T any](value T) Option[T] {
+	return Option[T]{value: &value}
+}
+
 // None returns a none.
 func None[T any]() Option[T] {
 	return Option[T]{value: nil}
@@ -47,6 +52,7 @@ func (o Option[T]) IsNone() bool {
 }
 
 // Expect returns the contained [`Some`] value.
+// Panics if the value is null with a custom panic message provided by `msg`.
 func (o Option[T]) Expect(msg string) *T {
 	if o.IsNone() {
 		panic(fmt.Errorf("%s", msg))
@@ -55,12 +61,13 @@ func (o Option[T]) Expect(msg string) *T {
 }
 
 // Unwrap returns the contained value.
+// Panics if the value is null.
 func (o Option[T]) Unwrap() *T {
 	if o.IsSome() {
 		return o.value
 	}
 	var t T
-	panic(fmt.Sprintf("call Option[%T].Unwrap() on None", t))
+	panic(fmt.Sprintf("call Option[%T].Unwrap() on nonnull", t))
 }
 
 // UnwrapOr returns the contained value or a provided default.
