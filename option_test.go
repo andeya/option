@@ -1,15 +1,10 @@
-# option
-Go-generics option module inspired by rust.
+package option
 
-Avoid `nil` value, handle value with `Option` type, will you choose her?
+import (
+	"fmt"
+	"strconv"
+)
 
-## Go Version
-
-go≥1.18
-
-## Example
-
-```go
 func Example() {
 	type A struct {
 		X int
@@ -39,4 +34,3 @@ func Example() {
 	// &{2}
 	// Some(&{1})
 }
-```
