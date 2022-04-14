@@ -1,4 +1,5 @@
-# option
+# option [![Docs](https://img.shields.io/badge/Docs-pkg.go.dev-blue.svg?style=flat-square)](https://pkg.go.dev/github.com/henrylee2cn/option)
+
 Go-generics option module inspired by rust.
 
 Avoid `nil` value, handle value with `Option` type, will you choose her?
