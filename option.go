@@ -33,6 +33,11 @@ func None[T any]() Option[T] {
 	return Option[T]{value: nil}
 }
 
+// ToOptnil converts to Optnil[T].
+func (o Option[T]) ToOptnil() Optnil[T] {
+	return Ptr[T](o.value)
+}
+
 // IsSome returns `true` if the option has value.
 func (o Option[T]) IsSome() bool {
 	return !o.IsNone()

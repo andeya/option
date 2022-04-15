@@ -28,7 +28,12 @@ func Nil[T any]() Optnil[T] {
 	return Optnil[T]{value: nil}
 }
 
-// NotNil returns `true` if the option has value.
+// ToOption converts to Option[T].
+func (o Optnil[T]) ToOption() Option[T] {
+	return Wrap[T](o.value)
+}
+
+// NotNil returns `true` if the value is not nil.
 func (o Optnil[T]) NotNil() bool {
 	return !o.IsNil()
 }
@@ -41,7 +46,7 @@ func (o Optnil[T]) NotNilAnd(f func(*T) bool) bool {
 	return false
 }
 
-// IsNil returns `true` if the option is none.
+// IsNil returns `true` if the value is nil.
 func (o Optnil[T]) IsNil() bool {
 	return o.value == nil
 }
