@@ -5,7 +5,7 @@ import (
 )
 
 // Optnil represents an optional value:
-// every [`Optnil`] is either [`NonNil`](which is nonnull *T), or [`Nil`](which is nil).
+// every [`Optnil`] is either [`NonNil`](which is nonnil *T), or [`Nil`](which is nil).
 type Optnil[T any] struct {
 	value *T
 }
@@ -23,7 +23,7 @@ func Ptr[T any](value *T) Optnil[T] {
 	return Optnil[T]{value: value}
 }
 
-// Nil returns a none.
+// Nil returns a nil.
 func Nil[T any]() Optnil[T] {
 	return Optnil[T]{value: nil}
 }
@@ -52,7 +52,7 @@ func (o Optnil[T]) IsNil() bool {
 }
 
 // Expect returns the contained [`NonNil`] value.
-// Panics if the value is null with a custom panic message provided by `msg`.
+// Panics if the value is nil with a custom panic message provided by `msg`.
 func (o Optnil[T]) Expect(msg string) *T {
 	if o.IsNil() {
 		panic(fmt.Errorf("%s", msg))
@@ -61,13 +61,13 @@ func (o Optnil[T]) Expect(msg string) *T {
 }
 
 // Unwrap returns the contained value.
-// Panics if the value is null.
+// Panics if the value is nil.
 func (o Optnil[T]) Unwrap() *T {
 	if o.NotNil() {
 		return o.value
 	}
 	var t T
-	panic(fmt.Sprintf("call Optnil[%T].Unwrap() on nonnull", t))
+	panic(fmt.Sprintf("call Optnil[%T].Unwrap() on nonnil", t))
 }
 
 // UnwrapOr returns the contained value or a provided default.
