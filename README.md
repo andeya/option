@@ -4,6 +4,8 @@ Go-generics option module inspired by rust.
 
 Avoid `nil` value, handle value with `Option` type, will you choose her?
 
+**Note: Migrated to [gust](https://github.com/henrylee2cn/gust).**
+
 ## Go Version
 
 go≥1.18
